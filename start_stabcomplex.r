@@ -17,8 +17,13 @@
 #		parameter values, but not needed here because a and r are defined globally)
 # Output:
 #	dx: derivative of Lotka-Volterra equations at point x
+<<<<<<< HEAD
 lvm <- function(t,x,parms){
         dx <- r*(1 - a %*% x) * x
+=======
+lvm <- function(t, x, parms) {
+        dx <- r * (1 - a %*% x) * x
+>>>>>>> c92d9d424303aa69c7bdeb6ed5f8f2ad2c893729
         list(dx)
 }
 
@@ -157,6 +162,7 @@ library(deSolve)
 
 ### INITIALIZE PARAMETER SETTINGS
 # Integration window
+<<<<<<< HEAD
 time<- list(start=0,end=30,steps=100)
 # dummy variable for lvm() function defined above
 parms <- c(0) ### dummy variable (can have any numerical value)
@@ -164,16 +170,32 @@ parms <- c(0) ### dummy variable (can have any numerical value)
 n<-10
 # Sparsity of interaction matrix (0<sparse<1) [sparse = 1 ==> full connectivity]
 sparse <- 0.2 
+=======
+time<- list(start=0,end=1,steps=2)
+# dummy variable for lvm() function defined above
+parms <- c(0) ### dummy variable (can have any numerical value)
+# Number of Species
+n<-2
+# Sparsity of interaction matrix (0<sparse<1) [sparse = 1 ==> full connectivity]
+sparse <- 1
+>>>>>>> c92d9d424303aa69c7bdeb6ed5f8f2ad2c893729
 # Generate parameters
 # first generate reproduction vector and interaction matrix containing only zeros.
 r <- numeric(n) 
 a <- matrix(0,nrow=n,ncol=n) 
 # Now generate random numbers for parameters according to function generate.parameters
 tmp <- generate.parameters(a,r,c(1:n),sparse)
+<<<<<<< HEAD
 r <- tmp$reproduction
 a <- tmp$matrix
 # Initial conditions (i.e. frequencies of n species at time = time$start)
 init.x <- runif(n)
+=======
+r <- c(1.5,1.1)
+a <- matrix(c(1,2.0,.4,1),2,2)
+# Initial conditions (i.e. frequencies of n species at time = time$start)
+init.x <- c(0.4,0.6)
+>>>>>>> c92d9d424303aa69c7bdeb6ed5f8f2ad2c893729
 # Threshold at which species are assumed to be extinct
 tol <- 0.0001
 
@@ -206,3 +228,8 @@ for (i in c(1:20)){
 # plot entire time course
 plot.lvm.time(outt)
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c92d9d424303aa69c7bdeb6ed5f8f2ad2c893729
